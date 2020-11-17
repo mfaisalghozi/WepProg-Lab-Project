@@ -50,11 +50,11 @@
                             @endif
                         @else
                             @if(Auth::user()->role == 2)
-                            <li class="nav-item"><a class="nav-link" href="#">View Transaction History</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/transaction/{{Auth::user()->id}}">View Transaction History</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">View Cart</a></li>
                             @elseif(Auth::user()->role == 1)
-                            <li class="nav-item"><a href="#" class="nav-link">View All User Transaction</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">View All User</a></li>
+                            <li class="nav-item"><a href="/alltransaction" class="nav-link">View All User Transaction</a></li>
+                            <li class="nav-item"><a href="/alluser" class="nav-link">View All User</a></li>
                             @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

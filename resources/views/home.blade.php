@@ -23,7 +23,7 @@
         <p class="display-5">order it now!</p>
         @if(Auth::check())
         @if (Auth::user()->role == 1)
-        <a href="#" class="btn btn-dark mx-2">Add new pizza</a>
+        <a href="/pizza/create" class="btn btn-dark mx-2">Add new pizza</a>
         @endif
         @endif
         <nav class="navbar navbar-light bg-light mr-0 w-100">
@@ -48,7 +48,7 @@
                   @if(Auth::check())
                   @if (Auth::user()->role == 1)
                   <a href="#" class="btn btn-primary">Update Pizza</a>
-                  <a href="#" class="btn btn-danger ml-2">Delete Pizza</a>
+                  <a href="/pizza/{{$p->id}}/delete" class="btn btn-danger ml-2">Delete Pizza</a>
                   @endif
                   @endif
                 </div>

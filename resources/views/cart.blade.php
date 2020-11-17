@@ -33,7 +33,22 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <a type="button" class="btn btn-dark btn-lg">Checkout</a>
+    <form action="/transaction" method="POST">
+            @csrf
+            <div class="form-group">
+            <label for="exampleFormControlInput1">user id</label>
+            <input type="Text" class="form-control" id="exampleFormControlInput1" name="user_id" value="{{Auth::user()->id}}">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput2">pizza id</label>
+            <input type="Text" class="form-control" id="exampleFormControlInput2" name="pizza_id" value="{{$pizza->id}}">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput3">quantity</label>
+            <input type="Text" class="form-control" id="exampleFormControlInput3" name="quantity" value="{{$request->qty}}">
+            </div>  
+            <button type="submit" class="btn btn-dark btn-lg">Checkout</button>
+    </form>
     </div>
 </div>
 @endsection

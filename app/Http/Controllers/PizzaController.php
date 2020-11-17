@@ -24,7 +24,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pizza/create');
     }
 
     /**
@@ -83,6 +83,11 @@ class PizzaController extends Controller
     public function destroy(Pizza $pizza)
     {
         //
+    }
+
+    public function delete($id){
+        $pizza = Pizza::Where('id',$id)->firstOrFail();
+        return view('pizza/pizzaDelete', compact('pizza'));
     }
 
     public function showCart(Pizza $pizza, Request $request){

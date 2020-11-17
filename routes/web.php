@@ -18,15 +18,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cart/{pizza}', 'PizzaController@showCart');
 
-// Route::get('/pizza/create', 'PizzaController@create');
+
+
+Route::get('/pizza/create', 'PizzaController@create');
 Route::get('/pizza/{pizza}', 'PizzaController@show');
 // Route::get('/pizza/{pizza_id}/edit', 'PizzaController@edit'); 
+Route::get('/pizza/{pizza_id}/delete', 'PizzaController@delete');
+
 
 // Route::post('/pizza', 'PizzaController@store'); 
 // Route::delete('/pizza/{pizza_id}', 'PizzaController@destroy'); 
 
-Route::get('/transaction', 'TransactionController@index');
-Route::get('/transaction/{transaction_id}', 'TransactionController@show');
+Route::get('/transaction/{user_id}', 'TransactionController@indexMember');
+Route::get('/transaction/{user_id}/{transaction_id}', 'TransactionController@show');
+
+Route::post('/transaction', 'TransactionController@store');
+
+Route::get('/alltransaction', 'TransactionController@indexAdmin');
+Route::get('/alluser', 'TransactionController@showUser');
+
+
 
 Auth::routes();
 

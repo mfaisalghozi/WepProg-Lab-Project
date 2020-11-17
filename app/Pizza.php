@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pizza extends Model
 {
-    public function transactions(){
+    public function transaction(){
         return $this->hasOne('app\Transaction');
     }
 }
