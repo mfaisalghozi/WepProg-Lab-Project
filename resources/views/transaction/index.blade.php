@@ -5,7 +5,7 @@
     <div class="jumbotron">
         <div class="row">
             @foreach($transaction as $t)
-            <a class="col-lg-12 mb-2" style="text-decoration:none;">
+            <a class="col-lg-12 mb-2" style="text-decoration:none;" href="/transaction/{{$t->id}}/detail">
                 <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">{{$t->created_at}}</h5>

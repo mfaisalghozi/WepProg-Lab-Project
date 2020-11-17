@@ -64,7 +64,7 @@ class TransactionController extends Controller
 
         return redirect('/home');
     }
-
+ 
     /**
      * Display the specified resource.
      *
@@ -73,12 +73,18 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        //  
     }
 
     public function showUser(){
         $user = User::All();
         return view('showUser', compact('user'));
+    }
+
+    public function showDetail($id){
+        $transaction = Transaction::where('id', $id)->firstOrFail();
+        return view('/transaction/show', compact('transaction'));
+        // return $id;
     }
 
     /**

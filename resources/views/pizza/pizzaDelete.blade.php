@@ -13,7 +13,9 @@
             <hr class="my-4">
             <p>Rp. {{$pizza->price}}</p>
             @if (Auth::check() && Auth::user()->role == 1)
-            <form method="GET" action="/pizza/{{$pizza->id}}/delete">
+            <form method="POST" action="/pizza/{{$pizza->id}}">
+                @method('delete')
+                @csrf
                 <div class="form-group row">
                     <button class="col-sm-3 btn btn-danger" type="submit">Delete Pizza</button>
                 </div>
