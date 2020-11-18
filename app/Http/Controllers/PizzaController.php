@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pizza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
 
 class PizzaController extends Controller
 {
@@ -123,7 +124,15 @@ class PizzaController extends Controller
         }else{
             return $request;
         }
+    }
 
+    public function updateCart(Request $request, $id){
+        if($request->quantity){
+            $cart = session()->get('cart');
+            $cart[$id]['quantity'] = $request->quantity;
+            session()->put('cart', $cart);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -144,19 +153,61 @@ class PizzaController extends Controller
         return view('pizza/pizzaDelete', compact('pizza'));
     }
 
-    public function showCart(Pizza $pizza, Request $request){
-        // return view('cart');
-        $request->validate([
-            'qty' => 'required',
-         ]);
-        return view('cart', compact('pizza', 'request'));
+    public function removeCart(Request $request, $id){
+        // return $request;
+        $cart = session()->get('cart');
+        if(isset($cart[$id])){
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+        return redirect()->back();
+    }
+
+
+    public function addToCart(Pizza $pizza , Request $request){
+        $id = $pizza->id;
+        $cart = session()->get('cart');
+        if(!$cart){
+            $cart = [
+                $id => [
+                    'pizza_id' => $id,
+                    'image_url' => $pizza->image_url,
+                    'name' => $pizza->name,
+                    'price' => $pizza->price,
+                    'quantity' => $request->qty,
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect('/home');
+        }
+        if(isset($cart[$id])){
+            return redirect('/home');
+        }
+
+        //CODE BELOW TO ADD MORE THAN 1 ITEM IN CART
+        //I COMMENTED IT TO MAKE DB OF TRANSACTION SIMPLE
+        //====================================
+        // $cart[$id] = [
+        //     'pizza_id' => $id,
+        //     'image_url' => $pizza->image_url,
+        //     'name' => $pizza->name,
+        //     'price' => $pizza->price,
+        //     'quantity' => $request->qty,
+        // ];
+        // session()->put('cart', $cart);
+        //===================================
+        
+        return redirect('/home');
+    }
+    
+    public function showCart(){
+        // return view('cart');      
+        return view('cart/cart');
     }
 
     public function search(Request $request){
-
         $search = $request->search;
-        $pizza = Pizza::where('name', 'like', "%".$search."%")->get();
-        
+        $pizza = Pizza::where('name', 'like', "%".$search."%")->get();      
         return view('/home', compact('pizza'));
     }
 

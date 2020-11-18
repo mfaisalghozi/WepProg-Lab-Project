@@ -61,7 +61,13 @@ class TransactionController extends Controller
                'total_price' => ($request->quantity * $price),
                'transaction_date' => Carbon::now(),
             ]);
-
+            
+            $cart = session()->get('cart');
+            if(isset($cart[$request->pizza_id])){
+                unset($cart[$request->pizza_id]);
+                session()->put('cart', $cart);
+            }
+            
         return redirect('/home');
     }
  

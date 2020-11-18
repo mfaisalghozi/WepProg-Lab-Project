@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/cart/{pizza}', 'PizzaController@showCart');
-
+Route::get('/cart', 'PizzaController@showCart');
+Route::get('/addToCart/{pizza}', 'PizzaController@addToCart');
+route::patch('/updateCart/{cart_id}', 'PizzaController@updateCart');
+route::delete('/removeCart/{cart_id}', 'pizzaController@removeCart');
 
 
 Route::get('/pizza/create', 'PizzaController@create');
@@ -39,8 +41,6 @@ Route::post('/transaction', 'TransactionController@store');
 
 Route::get('/alltransaction', 'TransactionController@indexAdmin');
 Route::get('/alluser', 'TransactionController@showUser');
-
-
 
 
 Auth::routes();

@@ -19,19 +19,38 @@
         </div>
     </div> --}}
     <div class="content mt-3">
-        <h1 class="display-4">Our Frehsly made pizza !</h1>
-        <p class="display-5">order it now!</p>
+        <h1 class="display-4 text-center">Our Frehsly made pizza !</h1>
+        <p class="display-5 text-center">order it now!</p>
     
         @if (Auth::check() && Auth::user()->role == 1)
         <a href="/pizza/create" class="btn btn-dark mx-2">Add new pizza</a>
         @endif
         
-        <nav class="navbar navbar-light bg-light mr-0 w-100">
-            <form class="form-inline w-100" action="/pizza/search" method="GET">
-              <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search" aria-label="Search" name="search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </nav>
+        @if(Auth::check())
+            @if (Auth::user()->role == 2)
+            <nav class="navbar navbar-light bg-light w-100">
+                <form class="form-inline w-100 row" action="/pizza/search" method="GET">
+                    <div class="col-lg-10 p-0">
+                        <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search" name="search">
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-outline-success my-2 my-sm-0 w-100" type="submit">Search</button>
+                    </div>
+                </form>
+            </nav>
+            @endif
+        @else
+            <nav class="navbar navbar-light bg-light w-100">
+                <form class="form-inline w-100 row" action="/pizza/search" method="GET">
+                    <div class="col-lg-10 p-0">
+                        <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search" name="search">
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-outline-success my-2 my-sm-0 w-100" type="submit">Search</button>
+                    </div>
+                </form>
+            </nav>
+        @endif
     </div>
     <div class="row mt-3">
         @foreach($pizza as $p)

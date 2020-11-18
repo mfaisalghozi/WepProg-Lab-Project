@@ -13,7 +13,7 @@
             <hr class="my-4">
             <p>Rp. {{$pizza->price}}</p>
             @if (Auth::check() && Auth::user()->role == 2)
-            <form method="GET" action="/cart/{{$pizza->id}}">
+            <form method="GET" action="/addToCart/{{$pizza->id}}">
                 <div class="form-group row">
                     <label for="inputQuantity" class="col-sm-2 col-form-label">Quantity</label>
                     <div class="col-sm-7">
