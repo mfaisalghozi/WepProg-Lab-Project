@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="jumbotron jumbotron-fluid text-center text-white" style="background-image: url('https://wallpaperaccess.com/full/866645.jpg');
+background-size: cover;
+height: 890px;
+opacity: 0.8;
+filter: brightness(90%);">
+    <div class="container">
+      <h1 class="display-4" style="font-size: 150px;">PHizza Hut</h1>
+      <p class="lead" style="font-size: 50px; font-style: italic">The most advanced pizza service in the world.</p>
+    </div>
+  </div>
 <div class="container">
     {{-- <div class="row justify-content-center">
         <div class="col-md-8">
