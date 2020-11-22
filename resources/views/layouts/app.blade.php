@@ -19,6 +19,18 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/myown.css') }}" rel="stylesheet">
+
+    <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+
+            #app {
+                height: 100%;
+            }  
+    </style>
+
 </head>
 <body>
     <div id="app">
@@ -81,9 +93,15 @@
             </div>
         </nav>
 
-        <main class="">
+        <main style="min-height: 90%">
             @yield('content')
         </main>
+
+        <footer id="footer">
+            <nav class="navbar navbar-dark bg-dark d-flex justify-content-center">
+                <span class="navbar-brand mb-0 h1"><a class="text-light" style="text-decoration: none;" href="https://github.com/mfaisalghozi" target="_blank">Created By MFaisalGhozi</a> @2020</span>
+              </nav>
+        </footer>
     </div>
     
 

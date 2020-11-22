@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container d-flex align-items-center" style="height: 800px">
     <div class="jumbotron">
         <div class="row mt-3">
             <div class="col-lg-6">
@@ -23,9 +23,6 @@
                 </div>
             </form>
             @endif
-
-
-
             </div>
         </div>
     </div>
