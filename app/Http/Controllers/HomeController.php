@@ -22,8 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {   
+    
+    //Function dibawah merupakan function untuk menampilkan seluruh pizza
+    // dari database dan ditampilkan di page home
+    public function index(){   
         $pizza = Pizza::All();
         return view('home', compact('pizza'));
     }

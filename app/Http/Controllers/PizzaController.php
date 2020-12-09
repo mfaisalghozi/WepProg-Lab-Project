@@ -35,6 +35,8 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // function dibawah digunakan untuk melakukan storing,yakni creating sebuah post baru untuk pizza, dengan melakukan logic validasi apakah form yang diisi memiliki file berupa image, kalau user tidak memasukan image maka fungsi dibawah tidak akan membuat sebuah data baru/post baru.
     public function store(Request $request)
     {
         if ($request->hasFile('image')) {
@@ -101,7 +103,6 @@ class PizzaController extends Controller
         if ($request->hasFile('image')) {
             //  Let's do everything 
             if ($request->file('image')->isValid()) {
-                //
                 $validated = $request->validate([
                     'name' => 'required|string|max:20',
                     'description' => 'required|string|min:20',
