@@ -36,8 +36,8 @@ filter: brightness(90%);">
         <a href="/pizza/create" class="btn btn-dark mx-2">Add new pizza</a>
         @endif
         
-        @if(Auth::check())
-            @if (Auth::user()->role == 2)
+        @if(Auth::check() || @guest)
+            @if (Auth::user()->role == 2 || @guest)
             <nav class="navbar navbar-light bg-light w-100">
                 <form class="form-inline w-100 row" action="/pizza/search" method="GET">
                     <div class="col-lg-10 p-0">
