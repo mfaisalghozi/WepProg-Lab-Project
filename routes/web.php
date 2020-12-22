@@ -18,10 +18,10 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //CART ROUTE
-Route::get('/cart', 'PizzaController@showCart');
-Route::get('/addToCart/{pizza}', 'PizzaController@addToCart');
-route::patch('/updateCart/{cart_id}', 'PizzaController@updateCart');
-route::delete('/removeCart/{cart_id}', 'pizzaController@removeCart');
+Route::get('/cart', 'CartController@index');
+Route::get('/addToCart/{pizza}', 'CartController@create');
+route::patch('/updateCart/{cart_id}', 'CartController@update');
+route::delete('/removeCart/{cart_id}', 'CartController@removeCart');
 
 //PIZZA ROUTE
 Route::get('/pizza/create', 'PizzaController@create');

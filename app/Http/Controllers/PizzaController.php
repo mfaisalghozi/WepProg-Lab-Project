@@ -35,7 +35,6 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     // function dibawah digunakan untuk melakukan storing,yakni creating sebuah post baru untuk pizza, dengan melakukan logic validasi apakah form yang diisi memiliki file berupa image, kalau user tidak memasukan image maka fungsi dibawah tidak akan membuat sebuah data baru/post baru.
     public function store(Request $request)
     {
@@ -75,9 +74,7 @@ class PizzaController extends Controller
      */
     public function show(Pizza $pizza)
     {
-    
         return view('pizza/pizzaShow', compact('pizza'));
-     
     }
 
     /**
@@ -95,7 +92,7 @@ class PizzaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pizza  $pizza
+     * @param  \App\Pizza 
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Pizza $pizza)
@@ -127,15 +124,6 @@ class PizzaController extends Controller
         }
     }
 
-    public function updateCart(Request $request, $id){
-        if($request->quantity){
-            $cart = session()->get('cart');
-            $cart[$id]['quantity'] = $request->quantity;
-            session()->put('cart', $cart);
-        }
-        return redirect()->back();
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -152,58 +140,6 @@ class PizzaController extends Controller
     public function delete($id){
         $pizza = Pizza::Where('id',$id)->firstOrFail();
         return view('pizza/pizzaDelete', compact('pizza'));
-    }
-
-    public function removeCart(Request $request, $id){
-        // return $request;
-        $cart = session()->get('cart');
-        if(isset($cart[$id])){
-            unset($cart[$id]);
-            session()->put('cart', $cart);
-        }
-        return redirect()->back();
-    }
-
-
-    public function addToCart(Pizza $pizza , Request $request){
-        $id = $pizza->id;
-        $cart = session()->get('cart');
-        if(!$cart){
-            $cart = [
-                $id => [
-                    'pizza_id' => $id,
-                    'image_url' => $pizza->image_url,
-                    'name' => $pizza->name,
-                    'price' => $pizza->price,
-                    'quantity' => $request->qty,
-                ]
-            ];
-            session()->put('cart', $cart);
-            return redirect('/home');
-        }
-        if(isset($cart[$id])){
-            return redirect('/home');
-        }
-
-        //CODE BELOW TO ADD MORE THAN 1 ITEM IN CART
-        //I COMMENTED IT TO MAKE DB OF TRANSACTION SIMPLE
-        //====================================
-        // $cart[$id] = [
-        //     'pizza_id' => $id,
-        //     'image_url' => $pizza->image_url,
-        //     'name' => $pizza->name,
-        //     'price' => $pizza->price,
-        //     'quantity' => $request->qty,
-        // ];
-        // session()->put('cart', $cart);
-        //===================================
-        
-        return redirect('/home');
-    }
-    
-    public function showCart(){
-        // return view('cart');      
-        return view('cart/cart');
     }
 
     public function search(Request $request){
