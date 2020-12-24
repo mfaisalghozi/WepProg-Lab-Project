@@ -20,8 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //CART ROUTE
 Route::get('/cart', 'CartController@index');
 Route::get('/addToCart/{pizza}', 'CartController@create');
-route::patch('/updateCart/{cart_id}', 'CartController@update');
-route::delete('/removeCart/{cart_id}', 'CartController@removeCart');
+Route::patch('/updateCart/{cart_id}', 'CartController@update');
+Route::delete('/removeCart/{cart_id}', 'CartController@removeCart');
 
 //PIZZA ROUTE
 Route::get('/pizza/create', 'PizzaController@create');
